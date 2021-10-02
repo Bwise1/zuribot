@@ -1,8 +1,8 @@
 import { useState } from "react/cjs/react.development";
 import styled  from "styled-components";
 import UnstyledButton from "./UnstyledButton";
-const CommentBox = ({value,handleInput,addComment,onFileAdd}) => {
-    const [type,setType] = useState("text");
+const CommentBox = ({value,handleInput,addComment,onImageSelect}) => {
+    const[type,setType] = useState("text")
    
     return(
         <Wrapper>
@@ -10,11 +10,11 @@ const CommentBox = ({value,handleInput,addComment,onFileAdd}) => {
             <Input type={type}
             placeholder="Send a message" 
              value={value}
-             onChange={handleInput}
+             onChange={type === "file"?onImageSelect:handleInput}
              onKeyDown={(e) => e.key === "Enter" && addComment()}
              />
             <div style={{display:"flex",gap:"8px",position:"absolute",top:"35%",right:"10px"}}>
-            <UnstyledButton onClick={ () => setType("file")}><img src="/comments/clip.svg" alt="" /></UnstyledButton>
+            <UnstyledButton onClick={type === "text" ? () => setType("file"): () => setType("text")}><img src="/comments/clip.svg" alt="" /></UnstyledButton>
             <UnstyledButton onClick={addComment}><img src="/comments/send.svg" alt="" /></UnstyledButton>
             </div>
             </InputWrapper>
