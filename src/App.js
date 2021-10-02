@@ -5,6 +5,7 @@ import CommentBox from './CommentBox';
 import styled from 'styled-components';
 
 const baseURL = `https://zuri-bot.herokuapp.com/twitter/post-text`;
+const mediaRL = `https://zuri-bot.herokuapp.com/twitter/post-media`;
 function App() {
   
   const[text,setText] = useState("");
@@ -32,28 +33,45 @@ const sendMessage = () => {
 
 }
 
+const sendImage = () => {
+  
+}
+
 const handleInput = (evt) => {
   setText(evt.target.value);
 }
 
 const handleAddComment = () => {
   setComment([...comment,text]);
-  sendMessage();
+  // sendMessage();
+  console.log("Holla")
     setText("");
   
 }
 
 
 const imageSelectHandler = (event) => {
-  
+
   const file = event.target.files[0];
-  console.log(file)
-  setComment([...comment,file.name]);
-}
-const fileSendHandler = () => {
-  console.log(imageText)
+  const formData = new FormData();
+
+  formData.append("media", file);
+  axios.post(mediaRL, formData, {
+    headers: {
+      'accept': 'application/json',
+      'Accept-Language': 'en-US,en;q=0.8',
+      'Content-Type': `multipart/form-data; boundary=${file._boundary}`
+    }
+  }).then((response) => {
+    console.log("image sent", response)
+  }).catch((error) => {
+    console.log("error", error)
+  });
 }
 
+const fileSendHandler = () => {
+  console.log("a file was sent")
+}
 
   return (
     <div className="App">
