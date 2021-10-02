@@ -1,0 +1,21 @@
+body {
+	margin: 0;
+	font-family: "Lato", BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+		'Droid Sans', 'Helvetica Neue', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+ul,
+p,
+h1,
+h2,
+h3 {
+	margin: 0;
+}
+
+code {
+	font-family: 'Lato', sans-serif;
+}
+html,body {
+height: 100%;
+}
